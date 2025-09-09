@@ -46,7 +46,7 @@ export interface Ext {
 }
 
 export interface ExternalSync {
-    [key: string]: any; 
+    [key: string]: any;
 }
 
 @Entity('tickets')
@@ -76,8 +76,16 @@ export class Ticket {
     @Column({ type: 'boolean', default: false })
     refund: boolean;
 
-    @Column({ type: 'numeric', precision: 18, scale: 2 })
-    ticket_amount: string;
+    @Column({
+        type: 'numeric',
+        precision: 18,
+        scale: 2,
+        transformer: {
+            to: (value: number) => value,     
+            from: (value: string) => parseFloat(value), 
+        },
+    })
+    ticket_amount: number;
 
     @Column({ type: 'boolean', default: false })
     tax_inclusive: boolean;

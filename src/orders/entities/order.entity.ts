@@ -13,7 +13,6 @@ export enum OrderItemType {
   COMBO_ITEM = "ComboItem",
 }
 
-
 export interface TaxDetail {
   GST?: number;
   VAT?: number;
@@ -52,6 +51,10 @@ export interface OrderExt {
   note?: string;
 }
 
+const numericTransformer = {
+  to: (value: number) => value,
+  from: (value: string) => (value ? parseFloat(value) : null),
+};
 
 @Entity('orders')
 export class Order {
@@ -88,23 +91,23 @@ export class Order {
   @Column({ type: 'int' })
   quantity: number;
 
-  @Column({ type: 'numeric', precision: 18, scale: 2 })
-  order_amount: string;
+  @Column({ type: 'numeric', precision: 18, scale: 2, transformer: numericTransformer })
+  order_amount: number;
 
   @Column({ type: 'boolean', default: false })
   tax_inclusive: boolean;
 
-  @Column({ type: 'numeric', precision: 18, scale: 2, nullable: true })
-  tax_amount: string;
+  @Column({ type: 'numeric', precision: 18, scale: 2, nullable: true, transformer: numericTransformer })
+  tax_amount: number;
 
   @Column({ type: 'jsonb', nullable: true })
   tax_detail: TaxDetail;
 
-  @Column({ type: 'numeric', precision: 18, scale: 2 })
-  net_amount: string;
+  @Column({ type: 'numeric', precision: 18, scale: 2, transformer: numericTransformer })
+  net_amount: number;
 
-  @Column({ type: 'numeric', precision: 18, scale: 2, nullable: true })
-  charge_amount: string;
+  @Column({ type: 'numeric', precision: 18, scale: 2, nullable: true, transformer: numericTransformer })
+  charge_amount: number;
 
   @Column({ type: 'jsonb', nullable: true })
   charge_detail: ChargeDetail;
