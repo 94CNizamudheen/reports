@@ -1,10 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  CreateDateColumn,
-} from 'typeorm';
+
+import {  Entity,  PrimaryGeneratedColumn,  Column,  ManyToOne, CreateDateColumn,} from 'typeorm';
 import { Ticket } from 'src/tickets/entity/ticket.entity'; 
 
 export interface PaymentTags {
