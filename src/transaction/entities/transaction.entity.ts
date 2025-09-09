@@ -5,7 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from "typeorm";
-import { Ticket } from "src/tickets/entity/ticket.entity"; 
+import { Ticket } from "src/tickets/entity/ticket.entity";
 
 
 
