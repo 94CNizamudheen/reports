@@ -5,7 +5,7 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 export class ExportJob {
   @PrimaryGeneratedColumn('increment') id: number;
   @Column() tenant: string;
-  @Column() type: string; // 'daily-sales' etc.
+  @Column() type: string;
   @Column({ type: 'jsonb' }) params: any;
   @Column({ default: 'queued' }) status: 'queued' | 'running' | 'done' | 'error';
   @Column({ nullable: true }) filePath: string;
