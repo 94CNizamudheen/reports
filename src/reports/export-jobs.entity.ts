@@ -7,8 +7,7 @@ export class ExportJob {
   @Column() tenant: string;
   @Column() type: string;
   @Column({ type: 'jsonb' }) params: any;
-  @Column({ default: 'queued' }) status: 'queued' | 'running' | 'done' | 'error';
-  @Column({ nullable: true }) filePath: string;
+  @Column({ default: 'done' }) status: 'done' | 'error'; 
   @Column({ nullable: true }) error: string;
   @CreateDateColumn({ type: 'timestamptz' }) created_at: Date;
   @UpdateDateColumn({ type: 'timestamptz' }) updated_at: Date;
