@@ -166,9 +166,7 @@ export class SeederService {
                         last_payment_date: bizDate,
                         last_payment_time: created,
                     });
-
                     tickets.push(ticket);
-
                     lastTicketNumberMap[location] = lastNumber + 1;
                 }
 
