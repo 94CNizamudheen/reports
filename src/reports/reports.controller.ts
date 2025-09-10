@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Res, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ReportsService } from './reports.service'; 
 import type { Response } from 'express';
 import { TenantInterceptor } from 'src/common/interceptors/tenant.interceptor';
@@ -11,8 +11,9 @@ export class ReportsController {
   constructor(private readonly svc: ReportsService) {}
 
   @Post('export/daily-sales')
-  queueDaily(@Body() body: { date: string }, req: any) {
-    return this.svc.queueJob(req.requestedTenantName, 'daily-sales', { date: body.date });
+  queueDaily(@Body() body: { date: string },@Req() req: Request) {
+
+    return this.svc.queueJob((req as any).requestedTenantName, 'daily-sales', { date: body.date });
   }
 
   @Get('export/:id')

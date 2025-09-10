@@ -18,7 +18,7 @@ import { ApiKey } from 'src/auth/entities/api-key.entity';
 export const typeOrmFactory = (config: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
   url: config.getOrThrow<string>('DB_URL'),
-  ssl: true,
+  ssl: { rejectUnauthorized: false },
   entities: [
     Location, PaymentType, TransactionType, Product,
     Ticket, TicketLog, Order, Payment, Trx,
