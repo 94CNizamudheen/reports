@@ -55,6 +55,8 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+git clone https://github.com/94CNizamudheen/reports.git
+cd reports
 ```
 
 ## Deployment
